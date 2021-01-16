@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.example.backend.config;
 
 import com.example.backend.domain.model.Cake;
 import com.example.backend.repository.CakeRepository;
@@ -13,6 +13,8 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Objects;
 
+import static com.example.backend.config.Constants.JSON_CAKE_URL;
+
 @Component
 public class DataInitializer {
 
@@ -20,7 +22,7 @@ public class DataInitializer {
 
     private final CakeRepository cakeRepository;
 
-    private final String URL_JSON = "https://gist.githubusercontent.com/hart88/198f29ec5114a3ec3460/raw/8dd19a88f9b8d24c23d9960f3300d0c917a4f07c/cake.json";
+    private String PATH = JSON_CAKE_URL;
 
     @Autowired
     public DataInitializer(RestTemplate restTemplate, CakeRepository cakeRepository) {
@@ -32,7 +34,7 @@ public class DataInitializer {
     public void init() {
         ResponseEntity<List<Cake>> responseEntity =
                 restTemplate.exchange(
-                        URL_JSON,
+                        PATH,
                         HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<>() {
@@ -43,7 +45,5 @@ public class DataInitializer {
             cakes = responseEntity.getBody();
             cakes.forEach(cakeRepository::save);
         }
-
-
     }
 }

@@ -1,16 +1,22 @@
 package com.example.frontend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class CakeDto {
 
     private String title;
     private String desc;
     private String image;
 
-    public CakeDto(String title, String desc, String image) {
+    public CakeDto(@JsonProperty("title") String title,
+                   @JsonProperty("desc")String desc,
+                   @JsonProperty("image")String image) {
         this.title = title;
         this.desc = desc;
         this.image = image;
     }
+
+    public CakeDto() { }
 
     public String getTitle() {
         return title;

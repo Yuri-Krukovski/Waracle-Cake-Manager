@@ -17,15 +17,11 @@ public class CakeServiceImpl {
     }
 
     public List<Cake> getAll() {
-        List<Cake> cakeList = cakeRepository.findAll();
-        if (!cakeList.isEmpty()){
-            throw new RuntimeException("");
-        }
         return cakeRepository.findAll();
     }
 
-    public void save(CakeDto cakeDto) {
-         cakeRepository.save(new Cake(
+    public Cake save(CakeDto cakeDto) {
+         return cakeRepository.save(new Cake(
                 cakeDto.getTitle(),
                 cakeDto.getDesc(),
                 cakeDto.getImage()));

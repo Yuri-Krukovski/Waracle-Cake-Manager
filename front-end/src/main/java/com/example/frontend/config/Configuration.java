@@ -1,4 +1,4 @@
-package com.example.frontend;
+package com.example.frontend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
